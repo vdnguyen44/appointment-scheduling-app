@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<TitledPane animated="false" collapsible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="297.0" prefWidth="600.0" text="Log In" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<TitledPane fx:id="titledPane" animated="false" collapsible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="297.0" prefWidth="600.0" text="Login" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controller.LoginFormController">
   <content>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="274.0" prefWidth="598.0">
          <children>
-            <Label fx:id="userIDLabel" layoutX="133.0" layoutY="73.0" text="UserID">
+            <Label fx:id="userNameLabel" layoutX="121.0" layoutY="72.0" text="Username">
                <font>
                   <Font size="18.0" />
                </font>
@@ -22,15 +22,15 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="userIDTxtField" layoutX="249.0" layoutY="72.0" />
-            <Label fx:id="zoneLabel" layoutX="34.0" layoutY="215.0" text="Zone: ">
+            <TextField fx:id="userNameTxtField" layoutX="287.0" layoutY="72.0" />
+            <PasswordField fx:id="passWordField" layoutX="287.0" layoutY="110.0" />
+            <Label fx:id="zoneLabel" layoutX="34.0" layoutY="215.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Button fx:id="logInButton" layoutX="249.0" layoutY="152.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="158.0" text="Submit" />
-            <Button fx:id="closeAppBtn" layoutX="506.0" layoutY="203.0" mnemonicParsing="false" text="Exit" />
-            <PasswordField layoutX="249.0" layoutY="109.0" />
+            <Button fx:id="logInButton" layoutX="287.0" layoutY="152.0" mnemonicParsing="false" onAction="#submitCredentials" prefHeight="29.0" prefWidth="158.0" text="Submit" />
+            <Button fx:id="closeAppBtn" layoutX="506.0" layoutY="203.0" mnemonicParsing="false" onAction="#exitApp" text="Exit" />
          </children></AnchorPane>
   </content>
    <font>

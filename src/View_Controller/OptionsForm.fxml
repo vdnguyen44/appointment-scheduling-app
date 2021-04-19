@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="295.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controller.OptionsForm">
+<AnchorPane prefHeight="400.0" prefWidth="295.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controller.OptionsFormController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="295.0">
          <children>
@@ -26,7 +25,7 @@
             </Label>
             <Pane layoutX="10.0" layoutY="210.0" prefHeight="100.0" prefWidth="295.0">
                <children>
-                  <Button fx:id="customerBtn" alignment="CENTER" layoutX="71.0" layoutY="24.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="153.0" text="Customers">
+                  <Button fx:id="customerBtn" alignment="CENTER" layoutX="71.0" layoutY="24.0" mnemonicParsing="false" onAction="#displayCustomersForm" prefHeight="52.0" prefWidth="153.0" text="Customers">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -35,7 +34,7 @@
             </Pane>
             <Pane layoutX="10.0" layoutY="310.0" prefHeight="100.0" prefWidth="295.0">
                <children>
-                  <Button fx:id="appointmentsBtn" alignment="CENTER" layoutX="71.0" layoutY="24.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="153.0" text="Appointments">
+                  <Button fx:id="appointmentsBtn" alignment="CENTER" layoutX="71.0" layoutY="24.0" mnemonicParsing="false" onAction="#displayAppointmentsForm" prefHeight="52.0" prefWidth="153.0" text="Appointments">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -44,7 +43,7 @@
             </Pane>
             <Pane layoutX="10.0" layoutY="210.0" prefHeight="100.0" prefWidth="295.0">
                <children>
-                  <Button fx:id="reportsBtn" alignment="CENTER" layoutX="71.0" layoutY="24.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="153.0" text="Reports">
+                  <Button fx:id="reportsBtn" alignment="CENTER" layoutX="71.0" layoutY="24.0" mnemonicParsing="false" onAction="#displayReportsForm" prefHeight="52.0" prefWidth="153.0" text="Reports">
                      <font>
                         <Font size="18.0" />
                      </font>
