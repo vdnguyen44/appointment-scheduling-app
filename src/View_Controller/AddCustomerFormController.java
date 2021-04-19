@@ -1,11 +1,19 @@
 package View_Controller;
 
+import DAO.CountriesDAO;
+import Model.Country;
+import Model.FirstLevelDivision;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
-public class AddCustomerFormController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class AddCustomerFormController implements Initializable {
 
     @FXML
     private TextField customerIDTxt;
@@ -23,15 +31,25 @@ public class AddCustomerFormController {
     private TextField phoneNumberTxt;
 
     @FXML
-    private ComboBox<?> countryComboBox;
+    private ComboBox<Country> countryComboBox;
 
     @FXML
-    private ComboBox<?> divisionComboBox;
+    private ComboBox<FirstLevelDivision> divisionComboBox;
 
     @FXML
     private Button saveBtn;
 
     @FXML
     private Button cancelBtn;
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+
+        countryComboBox.setItems(CountriesDAO.getAllCountries());
+        countryComboBox.setVisibleRowCount(5);
+        countryComboBox.setPromptText("Select a country");
+
+
+    }
 
 }
