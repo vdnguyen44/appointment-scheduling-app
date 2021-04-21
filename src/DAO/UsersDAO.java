@@ -11,6 +11,8 @@ import java.sql.SQLException;
 
 public class UsersDAO {
 
+    private static User currentUser;
+
     public static ObservableList<User> getAllUsers() {
 
         ObservableList<User> usersList = FXCollections.observableArrayList();
@@ -32,5 +34,13 @@ public class UsersDAO {
             e.printStackTrace();
         }
         return usersList;
+    }
+
+    public static void setCurrentUser(User user) {
+        currentUser = user;
+    }
+
+    public static User getCurrentUser() {
+        return currentUser;
     }
 }

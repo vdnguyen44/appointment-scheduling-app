@@ -54,14 +54,14 @@
                   <TextField fx:id="addressTxt" layoutX="212.0" layoutY="116.0" prefHeight="29.0" prefWidth="238.0" />
                   <TextField fx:id="postalCodeTxt" layoutX="212.0" layoutY="161.0" />
                   <TextField fx:id="phoneNumberTxt" layoutX="212.0" layoutY="206.0" />
-                  <ComboBox fx:id="countryComboBox" layoutX="36.0" layoutY="284.0" prefWidth="160.0" />
-                  <ComboBox fx:id="divisionComboBox" layoutX="262.0" layoutY="284.0" prefWidth="160.0" />
-                  <Button fx:id="saveBtn" layoutX="457.0" layoutY="372.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="69.0" text="Save">
+                  <ComboBox fx:id="countryComboBox" layoutX="36.0" layoutY="284.0" onAction="#countrySelected" prefWidth="160.0" />
+                  <ComboBox fx:id="divisionComboBox" layoutX="262.0" layoutY="284.0" onAction="#divisionSelected" prefWidth="160.0" />
+                  <Button fx:id="saveBtn" layoutX="457.0" layoutY="372.0" mnemonicParsing="false" onAction="#addCustomer" prefHeight="37.0" prefWidth="69.0" text="Save">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="cancelBtn" layoutX="555.0" layoutY="372.0" mnemonicParsing="false" text="Cancel">
+                  <Button fx:id="cancelBtn" layoutX="555.0" layoutY="372.0" mnemonicParsing="false" onAction="#returnCustomerForm" text="Cancel">
                      <font>
                         <Font size="16.0" />
                      </font>

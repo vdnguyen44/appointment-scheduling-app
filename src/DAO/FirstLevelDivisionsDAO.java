@@ -8,6 +8,7 @@ import utils.DBConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 public class FirstLevelDivisionsDAO {
 
@@ -23,9 +24,13 @@ public class FirstLevelDivisionsDAO {
             while (resultSet.next()) {
                 int divisionID = resultSet.getInt("Division_ID");
                 String divisionName = resultSet.getString("Division");
+                Timestamp dateCreated = resultSet.getTimestamp("Create_Date");
+                String createdBy = resultSet.getString("Created_By");
+                Timestamp lastUpdated = resultSet.getTimestamp("Last_Update");
+                String lastUpdatedBy = resultSet.getString("Last_Updated_By");
                 int countryID = resultSet.getInt("COUNTRY_ID");
 
-                FirstLevelDivision division = new FirstLevelDivision(divisionID, divisionName, countryID);
+                FirstLevelDivision division = new FirstLevelDivision(divisionID, divisionName, dateCreated, createdBy, lastUpdated, lastUpdatedBy, countryID);
                 firstLevelDivisionsList.add(division);
             }
         } catch (SQLException e) {

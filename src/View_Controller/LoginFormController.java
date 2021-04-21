@@ -75,6 +75,7 @@ public class LoginFormController implements Initializable  {
             for (User user : users) {
                 if (userNameTxtField.getText().equals(user.getUserName()) && passWordField.getText().equals(user.getPassword())) {
                     credentialsValid = true;
+                    UsersDAO.setCurrentUser(user);
                     Parent optionsFormLoader = FXMLLoader.load(getClass().getResource("/View_Controller/OptionsForm.fxml"));
                     Scene optionsScene = new Scene(optionsFormLoader);
 
