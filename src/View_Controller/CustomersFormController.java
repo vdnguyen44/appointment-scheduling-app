@@ -9,15 +9,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
+import utils.DBConnection;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class CustomersFormController implements Initializable {
@@ -68,7 +71,26 @@ public class CustomersFormController implements Initializable {
     private Button deleteCustomerBtn;
 
     @FXML
-    void deleteCustomer(ActionEvent event) {
+    void deleteCustomer(ActionEvent event) throws SQLException {
+        Customer selectedCustomer = customersTbl.getSelectionModel().getSelectedItem();
+        int selectedCustomerID = selectedCustomer.getCustomerID();
+
+        if (customersTbl.getSelectionModel().isEmpty()) {
+            displayNoneSelectedAlert();
+        }
+        else {
+            Optional<ButtonType> result = displayDeleteConfirmAlert();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                String deleteQuery = "DELETE from customers WHERE Customer_ID=?";
+                PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(deleteQuery);
+                preparedStatement.setInt(1, selectedCustomerID);
+                preparedStatement.executeUpdate();
+
+                customersTbl.setItems(CustomersDAO.getAllCustomers());
+            }
+        }
+
+
 
     }
 
@@ -83,8 +105,24 @@ public class CustomersFormController implements Initializable {
     }
 
     @FXML
-    void displayModifyCustomerForm(ActionEvent event) {
+    void displayModifyCustomerForm(ActionEvent event) throws IOException, SQLException {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("ModifyCustomerForm.fxml"));
+            Parent customersTableParent = loader.load();
+            Scene modifyCustomerScene = new Scene(customersTableParent);
 
+            ModifyCustomerFormController ModCustomerController = loader.getController();
+            ModCustomerController.initializeCustomerData(customersTbl.getSelectionModel().getSelectedItem());
+
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(modifyCustomerScene);
+            window.show();
+        }
+        catch (NullPointerException e)
+        {
+            displayNoneSelectedAlert();
+        }
     }
 
     @FXML
@@ -99,8 +137,10 @@ public class CustomersFormController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        // init table with objects
         customersTbl.setItems(CustomersDAO.getAllCustomers());
 
+        // init columns with object attributes
         customerIDCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
         customerNameCol.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         addressCol.setCellValueFactory(new PropertyValueFactory<>("customerAddress"));
@@ -111,6 +151,85 @@ public class CustomersFormController implements Initializable {
         lastUpdatedCol.setCellValueFactory(new PropertyValueFactory<>("lastUpdated"));
         lastUpdatedByCol.setCellValueFactory(new PropertyValueFactory<>("lastUpdatedBy"));
         divisionIDCol.setCellValueFactory(new PropertyValueFactory<>("divisionID"));
+
+        // set editable columns
+        customerNameCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        customerNameCol.setOnEditCommit(e -> {
+            e.getTableView().getItems().get(e.getTablePosition().getRow()).setCustomerName(e.getNewValue());
+            int customerID = e.getRowValue().getCustomerID();
+            try{
+                String updateQuery = "UPDATE customers SET Customer_Name=? WHERE Customer_ID=?";
+                PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(updateQuery);
+                preparedStatement.setString(1, e.getNewValue());
+                preparedStatement.setInt(2, customerID);
+                preparedStatement.executeUpdate();
+            } catch (SQLException error) {
+                error.printStackTrace();
+            }
+        });
+
+        addressCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        addressCol.setOnEditCommit(e -> {
+            e.getTableView().getItems().get(e.getTablePosition().getRow()).setCustomerName(e.getNewValue());
+            int customerID = e.getRowValue().getCustomerID();
+            try{
+                String updateQuery = "UPDATE customers SET Address=? WHERE Customer_ID=?";
+                PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(updateQuery);
+                preparedStatement.setString(1, e.getNewValue());
+                preparedStatement.setInt(2, customerID);
+                preparedStatement.executeUpdate();
+            } catch (SQLException error) {
+                error.printStackTrace();
+            }
+        });
+
+        postalCodeCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        postalCodeCol.setOnEditCommit(e -> {
+            e.getTableView().getItems().get(e.getTablePosition().getRow()).setCustomerName(e.getNewValue());
+            int customerID = e.getRowValue().getCustomerID();
+            try{
+                String updateQuery = "UPDATE customers SET Postal_Code=? WHERE Customer_ID=?";
+                PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(updateQuery);
+                preparedStatement.setString(1, e.getNewValue());
+                preparedStatement.setInt(2, customerID);
+                preparedStatement.executeUpdate();
+            } catch (SQLException error) {
+                error.printStackTrace();
+            }
+        });
+
+        phoneCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        phoneCol.setOnEditCommit(e -> {
+            e.getTableView().getItems().get(e.getTablePosition().getRow()).setCustomerName(e.getNewValue());
+            int customerID = e.getRowValue().getCustomerID();
+            try{
+                String updateQuery = "UPDATE customers SET Phone=? WHERE Customer_ID=?";
+                PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(updateQuery);
+                preparedStatement.setString(1, e.getNewValue());
+                preparedStatement.setInt(2, customerID);
+                preparedStatement.executeUpdate();
+            } catch (SQLException error) {
+                error.printStackTrace();
+            }
+        });
+
+
+    }
+
+    void displayNoneSelectedAlert() {
+        Alert noneSelectedAlert = new Alert(Alert.AlertType.ERROR);
+        noneSelectedAlert.setTitle("");
+        noneSelectedAlert.setHeaderText("Customer Selection Error");
+        noneSelectedAlert.setContentText("No customer is selected.");
+        noneSelectedAlert.show();
+    }
+
+    Optional<ButtonType> displayDeleteConfirmAlert() {
+        Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        deleteAlert.setTitle("");
+        deleteAlert.setHeaderText("Deletion Confirmation");
+        deleteAlert.setContentText("Are you sure you want to delete this customer?");
+        return deleteAlert.showAndWait();
     }
 
 }

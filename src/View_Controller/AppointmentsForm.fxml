@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controller.AppointmentsFormController">
+   <children>
+      <TableView prefHeight="306.0" prefWidth="612.0">
+        <columns>
+          <TableColumn prefWidth="101.0" text="Appointment ID" />
+          <TableColumn prefWidth="49.0" text="Title" />
+            <TableColumn prefWidth="93.0" text="Description" />
+            <TableColumn prefWidth="57.0" text="Location" />
+            <TableColumn prefWidth="48.0" text="Type" />
+            <TableColumn prefWidth="63.0" text="Start" />
+            <TableColumn prefWidth="61.0" text="End" />
+            <TableColumn prefWidth="60.0" text="Contact" />
+            <TableColumn prefWidth="75.0" text="Customer ID" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

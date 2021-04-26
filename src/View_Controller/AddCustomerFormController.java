@@ -105,6 +105,7 @@ public class AddCustomerFormController implements Initializable {
 //            System.out.println("no selection");
 //            divisionComboBox.setPromptText("Select a division");
 //        }
+
     }
 
     @FXML
@@ -132,17 +133,6 @@ public class AddCustomerFormController implements Initializable {
         divisionComboBox.setPromptText("Select a division");
         divisionComboBox.setVisibleRowCount(10);
 
-//        divisionComboBox.setButtonCell(new ListCell<FirstLevelDivision>() {
-//            protected void updateItem(FirstLevelDivision item, boolean empty) {
-//                super.updateItem(item, empty);
-//                if (empty || item == null) {
-//                    setText("Select a division");
-//                }
-//                else {
-//                    setItem(item);
-//                }
-//            }
-//        });
 
         countryComboBox.setOnAction((event) -> {
 
@@ -179,32 +169,6 @@ public class AddCustomerFormController implements Initializable {
 //            }
 
         });
-
-//        divisionComboBox.setOnAction((event) -> {
-//            if (divisionComboBox.getSelectionModel().isEmpty()) {
-//                divisionComboBox.setPromptText("Select a division");
-//            }
-//        });
-
-//        ObservableList<Country> countries = CountriesDAO.getAllCountries();
-//
-//        Callback<ListView<Country>, ListCell<Country>> factory = lv -> new ListCell<>() {
-//            @Override
-//            protected void updateItem(Country item, boolean empty) {
-//                super.updateItem(item, empty);
-//                setText(empty ? "" : (item.getCountryName()));
-//            }
-//        };
-
-//        Callback<ListView<Country>, ListCell<Country>> factoryUsed = lv -> new ListCell<>() {
-//            @Override
-//            protected void updateItem(Country item, boolean empty) {
-//                super.updateItem(item, empty);
-//                setText(empty ? "" : ("Please select a country"));
-//            }
-//        };
-//        countryComboBox.setCellFactory(factory);
-//        countryComboBox.setButtonCell(factoryUsed.call(null));
 
     }
 

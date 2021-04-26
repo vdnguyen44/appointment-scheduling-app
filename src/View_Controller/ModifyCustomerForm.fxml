@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controller.AddCustomerForm">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controller.ModifyCustomerFormController">
    <children>
       <TitledPane animated="false" collapsible="false" prefHeight="475.0" prefWidth="640.0" text="Modify Customer">
          <content>
@@ -56,12 +56,12 @@
                   <TextField fx:id="phoneNumberTxt" layoutX="212.0" layoutY="206.0" />
                   <ComboBox fx:id="countryComboBox" layoutX="36.0" layoutY="284.0" prefWidth="160.0" />
                   <ComboBox fx:id="divisionComboBox" layoutX="262.0" layoutY="284.0" prefWidth="160.0" />
-                  <Button fx:id="saveBtn" layoutX="457.0" layoutY="372.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="69.0" text="Save">
+                  <Button fx:id="saveBtn" layoutX="457.0" layoutY="372.0" mnemonicParsing="false" onAction="#modifyCustomer" prefHeight="37.0" prefWidth="69.0" text="Save">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="cancelBtn" layoutX="555.0" layoutY="372.0" mnemonicParsing="false" text="Cancel">
+                  <Button fx:id="cancelBtn" layoutX="555.0" layoutY="372.0" mnemonicParsing="false" onAction="#returnCustomerForm" text="Cancel">
                      <font>
                         <Font size="16.0" />
                      </font>
