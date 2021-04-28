@@ -72,6 +72,7 @@ public class AddCustomerFormController implements Initializable {
         String createdBy = UsersDAO.getCurrentUser().getUserName();
         String lastUpdatedBy = UsersDAO.getCurrentUser().getUserName();
         int divisionID = divisionComboBox.getSelectionModel().getSelectedItem().getDivisionID();
+        // String divisionName = divisionComboBox.getSelectionModel().getSelectedItem().getDivisionName();
 
         try {
             String insertStatement = "INSERT INTO customers(Customer_Name, Address, Postal_Code, Phone, Create_Date, Created_By, Last_Update, Last_Updated_By, Division_ID) " +
@@ -104,8 +105,7 @@ public class AddCustomerFormController implements Initializable {
 //        if (divisionComboBox.getSelectionModel().isEmpty()) {
 //            System.out.println("no selection");
 //            divisionComboBox.setPromptText("Select a division");
-//        }
-
+//
     }
 
     @FXML

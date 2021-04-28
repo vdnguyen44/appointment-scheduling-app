@@ -1,6 +1,7 @@
 package Model;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class Customer {
     private int customerID;
@@ -8,14 +9,17 @@ public class Customer {
     private String customerAddress;
     private String customerPostal;
     private String customerPhone;
-    private Timestamp dateCreated;
+    private LocalDateTime dateCreated;
     private String createdBy;
-    private Timestamp lastUpdated;
+    private LocalDateTime lastUpdated;
     private String lastUpdatedBy;
+    private int countryID;
+    private String countryName;
     private int divisionID;
+    private String divisionName;
 
 
-    public Customer(int customerID, String customerName, String customerAddress, String customerPostal, String customerPhone, Timestamp dateCreated, String createdBy, Timestamp lastUpdated, String lastUpdatedBy, int divisionID) {
+    public Customer(int customerID, String customerName, String customerAddress, String customerPostal, String customerPhone, LocalDateTime dateCreated, String createdBy, LocalDateTime lastUpdated, String lastUpdatedBy, int countryID, String countryName, int divisionID, String divisionName) {
         this.customerID = customerID;
         this.customerName = customerName;
         this.customerAddress = customerAddress;
@@ -25,7 +29,10 @@ public class Customer {
         this.createdBy = createdBy;
         this.lastUpdated = lastUpdated;
         this.lastUpdatedBy = lastUpdatedBy;
+        this.countryID = countryID;
+        this.countryName = countryName;
         this.divisionID = divisionID;
+        this.divisionName = divisionName;
     }
 
     public int getCustomerID() {
@@ -68,11 +75,11 @@ public class Customer {
         this.customerPhone = customerPhone;
     }
 
-    public Timestamp getDateCreated() {
+    public LocalDateTime getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Timestamp dateCreated) {
+    public void setDateCreated(LocalDateTime dateCreated) {
         this.dateCreated = dateCreated;
     }
 
@@ -84,11 +91,11 @@ public class Customer {
         this.createdBy = createdBy;
     }
 
-    public Timestamp getLastUpdated() {
+    public LocalDateTime getLastUpdated() {
         return lastUpdated;
     }
 
-    public void setLastUpdated(Timestamp lastUpdated) {
+    public void setLastUpdated(LocalDateTime lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
 
@@ -100,11 +107,40 @@ public class Customer {
         this.lastUpdatedBy = lastUpdatedBy;
     }
 
+    public int getCountryID() {
+        return countryID;
+    }
+
+    public void setCountryID(int countryID) {
+        this.countryID = countryID;
+    }
+
+    public String getCountryName() {
+        return countryName;
+    }
+
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
+    }
+
     public int getDivisionID() {
         return divisionID;
     }
 
     public void setDivisionID(int divisionID) {
         this.divisionID = divisionID;
+    }
+
+    public String getDivisionName() {
+        return divisionName;
+    }
+
+    public void setDivisionName(String divisionName) {
+        this.divisionName = divisionName;
+    }
+
+    @Override
+    public String toString(){
+        return "ID: " + customerID + ", " + customerName;
     }
 }

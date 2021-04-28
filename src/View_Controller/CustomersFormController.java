@@ -41,22 +41,13 @@ public class CustomersFormController implements Initializable {
     private TableColumn<Customer, String> postalCodeCol;
 
     @FXML
+    private TableColumn<Customer, String> divisionCol;
+
+    @FXML
+    private TableColumn<Customer, String> countryCol;
+
+    @FXML
     private TableColumn<Customer, String> phoneCol;
-
-    @FXML
-    private TableColumn<Customer, Timestamp> dateCreatedCol;
-
-    @FXML
-    private TableColumn<Customer, String> createdByCol;
-
-    @FXML
-    private TableColumn<Customer, Timestamp> lastUpdatedCol;
-
-    @FXML
-    private TableColumn<Customer, String> lastUpdatedByCol;
-
-    @FXML
-    private TableColumn<Customer, Integer> divisionIDCol;
 
     @FXML
     private Button cancelBtn;
@@ -145,12 +136,10 @@ public class CustomersFormController implements Initializable {
         customerNameCol.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         addressCol.setCellValueFactory(new PropertyValueFactory<>("customerAddress"));
         postalCodeCol.setCellValueFactory(new PropertyValueFactory<>("customerPostal"));
+        divisionCol.setCellValueFactory(new PropertyValueFactory<>("divisionName"));
+        countryCol.setCellValueFactory(new PropertyValueFactory<>("countryName"));
         phoneCol.setCellValueFactory(new PropertyValueFactory<>("customerPhone"));
-        dateCreatedCol.setCellValueFactory(new PropertyValueFactory<>("dateCreated"));
-        createdByCol.setCellValueFactory(new PropertyValueFactory<>("createdBy"));
-        lastUpdatedCol.setCellValueFactory(new PropertyValueFactory<>("lastUpdated"));
-        lastUpdatedByCol.setCellValueFactory(new PropertyValueFactory<>("lastUpdatedBy"));
-        divisionIDCol.setCellValueFactory(new PropertyValueFactory<>("divisionID"));
+
 
         // set editable columns
         customerNameCol.setCellFactory(TextFieldTableCell.forTableColumn());

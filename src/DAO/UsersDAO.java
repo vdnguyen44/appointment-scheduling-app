@@ -8,6 +8,7 @@ import utils.DBConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 
 public class UsersDAO {
 
@@ -26,8 +27,12 @@ public class UsersDAO {
                 int userID = resultSet.getInt("User_ID");
                 String userName = resultSet.getString("User_Name");
                 String password = resultSet.getString("Password");
+                LocalDateTime dateCreated = resultSet.getTimestamp("Create_Date").toLocalDateTime();
+                String createdBy = resultSet.getString("Created_By");
+                LocalDateTime lastUpdated = resultSet.getTimestamp("Last_Update").toLocalDateTime();
+                String lastUpdatedBy = resultSet.getString("Last_Updated_By");
 
-                User user = new User(userID, userName, password);
+                User user = new User(userID, userName, password, dateCreated, createdBy, lastUpdated, lastUpdatedBy);
                 usersList.add(user);
             }
         } catch (SQLException e) {

@@ -23,8 +23,13 @@ public class OptionsFormController {
     private Button reportsBtn;
 
     @FXML
-    void displayAppointmentsForm(ActionEvent event) {
+    void displayAppointmentsForm(ActionEvent event) throws IOException {
+        Parent AppointmentsFormLoader = FXMLLoader.load(getClass().getResource("/View_Controller/AppointmentsForm.fxml"));
+        Scene AppointmentsScene = new Scene(AppointmentsFormLoader);
 
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(AppointmentsScene);
+        window.show();
     }
 
     @FXML
