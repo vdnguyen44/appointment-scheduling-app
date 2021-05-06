@@ -4,14 +4,21 @@ import Model.Customer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import utils.DBConnection;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
+/**
+ * <p>The class involving database operations on customers, following the DAO pattern.</p>
+ */
+
 public class CustomersDAO {
+
+    /**
+     * <p>This method queries the database for existing countries.</p>
+     * @return An observable list of all existing customers in the database
+     */
 
     public static ObservableList<Customer> getAllCustomers() {
 

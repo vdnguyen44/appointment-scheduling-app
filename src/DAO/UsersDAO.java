@@ -4,15 +4,26 @@ import Model.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import utils.DBConnection;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 
+/**
+ * <p>The class involving database operations on users, following the DAO pattern.</p>
+ */
+
 public class UsersDAO {
 
+    /**
+     * The user logged into the application.
+     */
     private static User currentUser;
+
+    /**
+     * <p>This method queries the database for existing users.</p>
+     * @return An observable list of all existing users in the database
+     */
 
     public static ObservableList<User> getAllUsers() {
 
@@ -41,10 +52,18 @@ public class UsersDAO {
         return usersList;
     }
 
+    /**
+     * <p>This method sets the current user of the application.</p>
+     * @param user The user to be set as current user
+     */
     public static void setCurrentUser(User user) {
         currentUser = user;
     }
 
+    /**
+     * <p>This method retrieves the current user.</p>
+     * @return The current user
+     */
     public static User getCurrentUser() {
         return currentUser;
     }

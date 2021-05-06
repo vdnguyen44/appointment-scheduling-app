@@ -13,39 +13,66 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
+import utils.Alerts;
 import utils.DBConnection;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * The controller class for the customers form
+ */
+
 public class CustomersFormController implements Initializable {
 
+    /**
+     * The table view that displays all customers in the database
+     */
     @FXML
     private TableView<Customer> customersTbl;
 
+    /**
+     * The column that represents a customer's ID
+     */
     @FXML
     private TableColumn<Customer, Integer> customerIDCol;
 
+    /**
+     * The column that represents a customer's name
+     */
     @FXML
     private TableColumn<Customer, String> customerNameCol;
 
+    /**
+     * The column that represents a customer's address
+     */
     @FXML
     private TableColumn<Customer, String> addressCol;
 
+    /**
+     * The column that represents a customer's postal code
+     */
     @FXML
     private TableColumn<Customer, String> postalCodeCol;
 
+    /**
+     * The column that represents the first level division of a customer
+     */
     @FXML
     private TableColumn<Customer, String> divisionCol;
 
+    /**
+     * The column that represents the country of a customer
+     */
     @FXML
     private TableColumn<Customer, String> countryCol;
 
+    /**
+     * The column that represents a customer's phone number
+     */
     @FXML
     private TableColumn<Customer, String> phoneCol;
 
@@ -61,30 +88,51 @@ public class CustomersFormController implements Initializable {
     @FXML
     private Button deleteCustomerBtn;
 
+    /**
+     * <p>This method shows an error alert if a customer is not selected in the tableview. If a customer is selected,
+     * the user is prompted to confirm whether they would like to delete the customer. An sql query is executed to
+     * delete the customer from the database. The tableview is then refreshed and the user receives confirmation that
+     * the customer has been deleted.</p>
+     * @param event When the delete button is pressed
+     * @throws SQLException Exception thrown if there is an error accessing the database
+     */
     @FXML
     void deleteCustomer(ActionEvent event) throws SQLException {
-        Customer selectedCustomer = customersTbl.getSelectionModel().getSelectedItem();
-        int selectedCustomerID = selectedCustomer.getCustomerID();
 
         if (customersTbl.getSelectionModel().isEmpty()) {
-            displayNoneSelectedAlert();
+            Alerts.showNoCustomerSelectedAlert();
         }
         else {
-            Optional<ButtonType> result = displayDeleteConfirmAlert();
+            Customer selectedCustomer = customersTbl.getSelectionModel().getSelectedItem();
+            int selectedCustomerID = selectedCustomer.getCustomerID();
+            Optional<ButtonType> result = Alerts.showCustomerDeleteConfirmAlert();
+
             if (result.isPresent() && result.get() == ButtonType.OK) {
+
+                String deleteCustomerAppt = "DELETE from appointments WHERE Customer_ID=?";
+                PreparedStatement deleteCustomerApptPS = DBConnection.getConnection().prepareStatement(deleteCustomerAppt);
+                deleteCustomerApptPS.setInt(1, selectedCustomerID);
+                deleteCustomerApptPS.executeUpdate();
+
                 String deleteQuery = "DELETE from customers WHERE Customer_ID=?";
                 PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(deleteQuery);
                 preparedStatement.setInt(1, selectedCustomerID);
                 preparedStatement.executeUpdate();
 
                 customersTbl.setItems(CustomersDAO.getAllCustomers());
+
+                Alerts.showCustomerDeleteConfirmation();
+
             }
         }
-
-
-
+        customersTbl.getSelectionModel().clearSelection();
     }
 
+    /**
+     * <p>This method changes the scene and displays the add customer form.</p>
+     * @param event When the add customer button is pressed
+     * @throws IOException Exception thrown if the add customer form fxml cannot be located
+     */
     @FXML
     void displayAddCustomerForm(ActionEvent event) throws IOException {
         Parent addCustomerFormLoader = FXMLLoader.load(getClass().getResource("/View_Controller/AddCustomerForm.fxml"));
@@ -95,6 +143,13 @@ public class CustomersFormController implements Initializable {
         window.show();
     }
 
+    /**
+     * <p>This method changes the scene and displays the modify customers form. The selected customer's information
+     * is sent to the modify customer form's controller. An error alert is shown if no customer is selected.</p>
+     * @param event when the modify customer button is pressed
+     * @throws IOException Exception thrown if the modify customer form fxml cannot be located
+     * @throws SQLException Exception thrown if the customer is not found in the database
+     */
     @FXML
     void displayModifyCustomerForm(ActionEvent event) throws IOException, SQLException {
         try {
@@ -112,10 +167,15 @@ public class CustomersFormController implements Initializable {
         }
         catch (NullPointerException e)
         {
-            displayNoneSelectedAlert();
+            Alerts.showNoCustomerSelectedAlert();
         }
     }
 
+    /**
+     * <p>This method changes the scene and displays the options form.</p>
+     * @param event when the cancel button is pressed
+     * @throws IOException Exception thrown if the options form fxml cannot be located
+     */
     @FXML
     void returnOptionsForm(ActionEvent event) throws IOException {
         Parent optionsFormLoader = FXMLLoader.load(getClass().getResource("/View_Controller/OptionsForm.fxml"));
@@ -126,6 +186,12 @@ public class CustomersFormController implements Initializable {
         window.show();
     }
 
+    /**
+     * <p>This method initializes the customers table with existing customers in the database and reformats the
+     * table view's cells.</p>
+     * @param url Location
+     * @param rb Resources
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // init table with objects
@@ -202,23 +268,6 @@ public class CustomersFormController implements Initializable {
             }
         });
 
-
-    }
-
-    void displayNoneSelectedAlert() {
-        Alert noneSelectedAlert = new Alert(Alert.AlertType.ERROR);
-        noneSelectedAlert.setTitle("");
-        noneSelectedAlert.setHeaderText("Customer Selection Error");
-        noneSelectedAlert.setContentText("No customer is selected.");
-        noneSelectedAlert.show();
-    }
-
-    Optional<ButtonType> displayDeleteConfirmAlert() {
-        Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
-        deleteAlert.setTitle("");
-        deleteAlert.setHeaderText("Deletion Confirmation");
-        deleteAlert.setContentText("Are you sure you want to delete this customer?");
-        return deleteAlert.showAndWait();
     }
 
 }

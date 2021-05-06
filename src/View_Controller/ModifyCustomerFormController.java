@@ -1,7 +1,6 @@
 package View_Controller;
 
 import DAO.CountriesDAO;
-import DAO.FirstLevelDivisionsDAO;
 import DAO.UsersDAO;
 import Model.Country;
 import Model.Customer;
@@ -14,48 +13,81 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import utils.DBConnection;
-
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
+/**
+ * The controller class for the modify customer form
+ */
+
 public class ModifyCustomerFormController {
 
+    /**
+     * The text field for the customer's ID, cannot be edited
+     */
     @FXML
     private TextField customerIDTxt;
+
+    /**
+     * The text field for the customer's name
+     */
 
     @FXML
     private TextField customerNameTxt;
 
+    /**
+     * The text field for the customer's address
+     */
+
     @FXML
     private TextField addressTxt;
+
+    /**
+     * The text field for the customer's postal code
+     */
 
     @FXML
     private TextField postalCodeTxt;
 
+    /**
+     * The text field for the customer's phone number
+     */
+
     @FXML
     private TextField phoneNumberTxt;
+
+    /**
+     * The combo box for the customer's country
+     */
 
     @FXML
     private ComboBox<Country> countryComboBox;
 
+    /**
+     * The combo box for the customer's first level division
+     */
+
     @FXML
     private ComboBox<FirstLevelDivision> divisionComboBox;
 
-    @FXML
-    private Button saveBtn;
-
-    @FXML
-    private Button cancelBtn;
-
+    /**
+     * The selected customer's ID
+     */
     private int customerID;
+
+    /**
+     *<p>This method retrieves the values from the text fields and combo boxes and sets them as the customer's new
+     * attributes. The customers form is then displayed.</p>
+     * @param event When the save button is pressed
+     * @throws IOException Exception thrown if the customers form fxml cannot be located
+     */
 
     @FXML
     void modifyCustomer(ActionEvent event) throws IOException {
@@ -93,6 +125,11 @@ public class ModifyCustomerFormController {
         window.show();
     }
 
+    /**
+     * <p>This method changes the scene and displays the customers form.</p>
+     * @param event When the cancel button is pressed
+     * @throws IOException Exception thrown if the customers form cannot be located
+     */
     @FXML
     void returnCustomerForm(ActionEvent event) throws IOException {
         Parent CustomersFormLoader = FXMLLoader.load(getClass().getResource("/View_Controller/CustomersForm.fxml"));
@@ -104,6 +141,14 @@ public class ModifyCustomerFormController {
 
     }
 
+    /**
+     * <p>This method initializes the text fields and combo boxes with the customer's attributes. Then a
+     * lambda expression is  used to change the first level division combo box's selection based on the item selected
+     * from the country combo box. The lambda expression keeps the logic of the behavior of the combo boxes in the
+     * appropriate method without having to create a separate function.</p>
+     * @param customer Selected customer from the customers form
+     * @throws SQLException Exception thrown if there is an error accessing the database
+     */
     public void initializeCustomerData(Customer customer) throws SQLException {
         customerID = customer.getCustomerID();
         customerIDTxt.setText(String.valueOf(customerID));
@@ -180,7 +225,7 @@ public class ModifyCustomerFormController {
         }
         divisionComboBox.setItems(divisionsSameCountry);
 
-        // Changes division combobox selections based country combobox selection
+        // Changes division combo box selections based country combo box selection
         countryComboBox.setOnAction((event) -> {
 
             int countryIDSelected = countryComboBox.getSelectionModel().getSelectedItem().getCountryID();
@@ -206,14 +251,10 @@ public class ModifyCustomerFormController {
                 }
 
                 divisionComboBox.setItems(firstLevelDivisionsList);
+
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
-//            if (divisionComboBox.getSelectionModel().isEmpty()) {
-//                System.out.println("no selection");
-//                divisionComboBox.setPromptText("Select a division");
-//            }
 
         });
     }

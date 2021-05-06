@@ -6,21 +6,22 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
-
 import java.io.IOException;
+
+/**
+ * The controller class for the options form
+ */
+
 
 public class OptionsFormController {
 
-    @FXML
-    private Button customerBtn;
 
-    @FXML
-    private Button appointmentsBtn;
-
-    @FXML
-    private Button reportsBtn;
+    /**
+     * <p>This method changes the scene and displays the appointments form.</p>
+     * @param event When the appointments button is pressed
+     * @throws IOException Exception thrown if the Appointments form fxml cannot be located
+     */
 
     @FXML
     void displayAppointmentsForm(ActionEvent event) throws IOException {
@@ -32,6 +33,11 @@ public class OptionsFormController {
         window.show();
     }
 
+    /**
+     * <p>This method changes the scene and displays the customers form.</p>
+     * @param event When the customers button is pressed
+     * @throws IOException Exception thrown if the Customers form fxml cannot be located
+     */
     @FXML
     void displayCustomersForm(ActionEvent event) throws IOException {
         Parent customersFormLoader = FXMLLoader.load(getClass().getResource("/View_Controller/CustomersForm.fxml"));
@@ -42,10 +48,22 @@ public class OptionsFormController {
         window.show();
     }
 
+    /**
+     * <p>This method changes the scene and displays the reports form.</p>
+     * @param event When the reports button is pressed
+     * @throws IOException Exception thrown if the Reports form fxml cannot be located
+     */
     @FXML
-    void displayReportsForm(ActionEvent event) {
+    void displayReportsForm(ActionEvent event) throws IOException {
+        Parent reportsFormLoader = FXMLLoader.load(getClass().getResource("/View_Controller/ReportsForm.fxml"));
+        Scene reportsScene = new Scene(reportsFormLoader);
 
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(reportsScene);
+        window.show();
     }
+
+
 
 }
 

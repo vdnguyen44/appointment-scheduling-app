@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controller.AppointmentsFormController">
+<AnchorPane prefHeight="400.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controller.AppointmentsFormController">
    <children>
-      <TableView fx:id="appointmentsTbl" prefHeight="306.0" prefWidth="920.0">
+      <TableView fx:id="appointmentsTbl" prefHeight="306.0" prefWidth="954.0">
         <columns>
           <TableColumn fx:id="apptIDCol" prefWidth="101.0" text="Appointment ID" />
           <TableColumn fx:id="apptTitleCol" prefWidth="67.0" text="Title" />
@@ -17,14 +17,14 @@
             <TableColumn fx:id="apptTypeCol" prefWidth="100.0" text="Type" />
             <TableColumn fx:id="apptStartCol" prefWidth="113.0" text="Start" />
             <TableColumn fx:id="apptEndCol" prefWidth="108.0" text="End" />
-            <TableColumn fx:id="apptContactCol" prefWidth="97.0" text="Contact" />
-            <TableColumn fx:id="customerIDCol" prefWidth="77.0" text="Customer ID" />
+            <TableColumn fx:id="apptContactCol" prefWidth="119.0" text="Contact" />
+            <TableColumn fx:id="customerIDCol" prefWidth="89.0" text="Customer ID" />
         </columns>
       </TableView>
       <Button fx:id="cancelBtn" layoutX="742.0" layoutY="330.0" mnemonicParsing="false" onAction="#returnOptionsForm" prefHeight="46.0" prefWidth="96.0" text="Cancel" />
       <Button fx:id="addAppointmentBtn" layoutX="31.0" layoutY="330.0" mnemonicParsing="false" onAction="#displayAddAppointmentForm" prefHeight="46.0" prefWidth="96.0" text="Add" />
       <Button fx:id="modifyAppointmentBtn" layoutX="181.0" layoutY="330.0" mnemonicParsing="false" onAction="#displayModifyAppointmentForm" prefHeight="46.0" prefWidth="96.0" text="Modify" />
       <Button fx:id="deleteAppointmentBtn" layoutX="331.0" layoutY="330.0" mnemonicParsing="false" onAction="#deleteAppointment" prefHeight="46.0" prefWidth="96.0" text="Delete" />
-      <ChoiceBox fx:id="timeSelectionChoiceBox" layoutX="483.0" layoutY="341.0" prefWidth="150.0" />
+      <ComboBox fx:id="apptViewComboBox" layoutX="517.0" layoutY="341.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

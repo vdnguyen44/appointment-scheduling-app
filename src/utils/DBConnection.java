@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * Class using jdbc driver to connect to database
+ */
 
 public class DBConnection {
 
@@ -23,6 +26,10 @@ public class DBConnection {
     private static final String password = "53689110923";
 
 
+    /**
+     * <p>This method uses the provided credentials and driver to connect to the mySQL database.</p>
+     * @return connection to database
+     */
     public static Connection startConnection() {
         try {
             Class.forName(MYSQLJDBCDriver);
@@ -34,10 +41,17 @@ public class DBConnection {
         return connection;
     }
 
+    /**
+     * <p>This method gets the connection when called instead of having to restart the connection.</p>
+     * @return connection to database
+     */
     public static Connection getConnection() {
         return connection;
     }
 
+    /**
+     * <p>This method gives a visual confirmation that the connection has closed by printing to the console.</p>
+     */
     public static void closeConnection() {
         try {
             connection.close();

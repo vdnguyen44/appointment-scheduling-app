@@ -4,13 +4,21 @@ import Model.FirstLevelDivision;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import utils.DBConnection;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
+/**
+ * <p>The class involving database operations on first level divisions, following the DAO pattern.</p>
+ */
+
 public class FirstLevelDivisionsDAO {
+
+    /**
+     * <p>This method queries the database for existing first level divisions.</p>
+     * @return An observable list of all existing first level divisions in the database
+     */
 
     public static ObservableList<FirstLevelDivision> getAllFirstLevelDivisions() {
 
