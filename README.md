@@ -36,3 +36,12 @@ Customer IDs are automatically generated. Once the textboxes are filled and sele
 ![image](https://user-images.githubusercontent.com/41936050/150026351-79bd90b7-e8b2-4196-b3d8-da46de3b7146.png)
 
 The form will be prepopulated with the selected customer's information. Textboxes and dropdown bars can be edited. Once saved, the customer's information will be updated.
+
+# Appointments Form
+
+![image](https://user-images.githubusercontent.com/41936050/150026892-05508db0-156e-42d0-ab64-7b1481d98902.png)
+
+The application queries the database for a list of current and future appointments. Appointments can also be added, modified, or deleted. The combobox allows the user
+to select a view of appointments based on their preference.
+
+
