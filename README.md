@@ -30,3 +30,9 @@ the table.
 ![image](https://user-images.githubusercontent.com/41936050/150025848-760e402e-b459-47c3-881f-088f9a1adb2b.png)
 
 Customer IDs are automatically generated. Once the textboxes are filled and selections are made in the dropdown bar, the user must press save to add the customer. Note: textboxes must contain valid input.
+
+# Modify Customer Form
+
+![image](https://user-images.githubusercontent.com/41936050/150026351-79bd90b7-e8b2-4196-b3d8-da46de3b7146.png)
+
+The form will be prepopulated with the selected customer's information. Textboxes and dropdown bars can be edited. Once saved, the customer's information will be updated.
