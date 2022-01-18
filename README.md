@@ -24,3 +24,9 @@ is selected.
 
 The application will query the database for the existing list of customers and populate the table. Customers can be added, modified, and deleted using the buttons below
 the table.
+
+# Add Customer Form
+
+![image](https://user-images.githubusercontent.com/41936050/150025848-760e402e-b459-47c3-881f-088f9a1adb2b.png)
+
+Customer IDs are automatically generated. Once the textboxes are filled and selections are made in the dropdown bar, the user must press save to add the customer. Note: textboxes must contain valid input.
