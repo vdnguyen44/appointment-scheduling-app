@@ -3,6 +3,8 @@
 Purpose: This application aims to manage a group of customers, users, and contacts and the appointments they are associated with. Due to removal of access from the 
 MySQL workbench, images of each screen and descriptions of functionality are provided.
 
+Users receive alerts for errors such as: invalid user credentials, invalid inputs, attempts to create overlapping appointments, etc
+
 # Login Form
 
 ![image](https://user-images.githubusercontent.com/41936050/150024667-2b2bff4b-6faf-4ddd-b905-6b7f776af491.png)
