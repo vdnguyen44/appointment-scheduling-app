@@ -29,13 +29,13 @@ the table.
 
 ![image](https://user-images.githubusercontent.com/41936050/150025848-760e402e-b459-47c3-881f-088f9a1adb2b.png)
 
-Customer IDs are automatically generated. Once the textboxes are filled and selections are made in the dropdown bar, the user must press save to add the customer. Note: textboxes must contain valid input.
+Customer IDs are automatically generated. Once the textfields are filled and selections are made in the combobox, the user must press save to add the customer. Note: textfields must contain valid input.
 
 # Modify Customer Form
 
 ![image](https://user-images.githubusercontent.com/41936050/150026351-79bd90b7-e8b2-4196-b3d8-da46de3b7146.png)
 
-The form will be prepopulated with the selected customer's information. Textboxes and dropdown bars can be edited. Once saved, the customer's information will be updated.
+The form will be prepopulated with the selected customer's information. Textfields and comboboxes can be edited. Once saved, the customer's information will be updated.
 
 # Appointments Form
 
@@ -43,5 +43,24 @@ The form will be prepopulated with the selected customer's information. Textboxe
 
 The application queries the database for a list of current and future appointments. Appointments can also be added, modified, or deleted. The combobox allows the user
 to select a view of appointments based on their preference.
+
+# Add Appointments Form
+
+![image](https://user-images.githubusercontent.com/41936050/150027840-7dd539a2-dfc5-4635-a7d9-39c00a4cb5c6.png)
+
+The appointment ID is automatically generated. Once the textfields, datepicker, and comboboxes are filled, the user can press save to add the appointment. Note: Textfields must
+have valid input. End date/time must be after the start date/time.
+
+# Modify Appointments Form
+
+![image](https://user-images.githubusercontent.com/41936050/150027937-7a8412cb-4939-45cf-a8bf-189aeb059b39.png)
+
+The form will be prepopulated with the selected appointment's information. Textfields, datepickers, comboboxes can be edited. Once saved, the appointment's information will be updated.
+
+# Reports Form
+
+![image](https://user-images.githubusercontent.com/41936050/150028223-23f867c6-a0c4-456a-9c8f-9091073f81a0.png)
+
+The user can select an option from the combobox. The textbox under it will populate with the report.
 
 
