@@ -16,3 +16,11 @@ receive an alert to try again.
 
 The options screen offers the user three options: customers form, appointments form, and reports form. Users will be forwarded to the appropriate screen once an option
 is selected.
+
+
+# Customers Form
+
+![image](https://user-images.githubusercontent.com/41936050/150025505-baf79802-ef79-48d2-81bc-04c9cfdc2a09.png)
+
+The application will query the database for the existing list of customers and populate the table. Customers can be added, modified, and deleted using the buttons below
+the table.
